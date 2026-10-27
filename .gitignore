@@ -1,0 +1,13 @@
+node_modules/
+release/
+release-*/
+runtime/
+build/
+dist/
+.venv/
+__pycache__/
+.env*
+!.env.example
+*.enc
+*.pyc
+*.log

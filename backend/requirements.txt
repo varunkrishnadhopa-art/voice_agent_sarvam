@@ -1,0 +1,4 @@
+livekit-agents[sarvam,silero,openai]==1.8.9
+sounddevice==0.5.6
+numpy>=2,<3
+aiohttp>=3.10,<4

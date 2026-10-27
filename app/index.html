@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sarvam Voice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="rail">
+    <div class="brand"><span class="brand-icon">s</span><span>Sarvam<span class="brand-sub">VOICE STUDIO</span></span></div>
+    <div class="rail-label">WORKSPACE</div>
+    <button class="nav active" id="conversationTab"><span>◉</span> Conversation</button>
+    <button class="nav" id="settingsTab"><span>⚙</span> Settings</button>
+    <div class="rail-bottom"><span class="privacy-dot"></span> Audio stays off until Start<div>Powered by LiveKit + Sarvam</div></div>
+  </aside>
+  <main>
+    <header><div><div class="eyebrow">YOUR DESKTOP ASSISTANT</div><h1>Let’s talk.</h1></div><span class="status" id="status"><i></i><span>Stopped</span></span></header>
+    <div class="notice" id="notice" role="status" hidden></div>
+    <section id="conversationView">
+      <div class="workspace">
+        <section class="control-card">
+          <div class="card-top"><span>VOICE SESSION</span><span id="modelLabel">GEMMA 4</span></div>
+          <div class="orb-wrap"><div class="orb" id="orb"><div class="orb-core"></div></div></div>
+          <h2 id="sessionTitle">A conversation away.</h2>
+          <p id="sessionHint">Choose your audio devices, then start talking.</p>
+          <div class="session-actions"><button id="start" class="primary">▶ &nbsp; Start conversation</button><button id="stop" class="stop" disabled>■ &nbsp; Stop</button></div>
+          <div class="mic-panel"><div><span>MICROPHONE LEVEL</span><span id="levelText">Off</span></div><div class="meter"><div id="meterFill"></div></div></div>
+          <div class="devices">
+            <label>Microphone<select id="inputDevice"><option value="auto">Automatic · earbuds → laptop</option></select></label>
+            <label>Speaker<select id="outputDevice"><option value="auto">Automatic · earbuds → laptop</option></select></label>
+            <div class="device-actions"><button id="refresh" class="text-button">↻ Refresh devices</button><button id="testTone" class="text-button">♪ Test speaker</button></div>
+          </div>
+          <div class="selected" id="selected">Devices will be selected when you start.</div>
+        </section>
+        <section class="transcript-card">
+          <div class="transcript-heading"><div><h2>Conversation</h2><p>Your words, in real time.</p></div><button id="clear" class="text-button">Clear</button></div>
+          <div id="transcripts" aria-live="polite"><div class="empty" id="empty"><span>“</span><h3>Make yourself heard.</h3><p>Your conversation will appear here.<br>Nothing is saved to disk.</p></div></div>
+          <div class="transcript-footer"><span class="tiny-dot"></span><span id="sessionFooter">Ready when you are</span></div>
+        </section>
+      </div>
+      <footer><span>LIVEKIT AUDIO</span><span>SARVAM STT + TTS</span><span id="footerLlm">GEMMA 4 INTELLIGENCE</span><span class="footer-right">Connected services require internet</span></footer>
+    </section>
+    <section id="settingsView" hidden>
+      <div class="settings-heading"><h2>Make it yours.</h2><p>Credentials are encrypted for your Windows account. They are never bundled with the app.</p></div>
+      <form id="settingsForm" class="settings-card">
+        <div class="settings-section"><h3>Speech & language</h3><div class="form-grid"><label class="wide">Sarvam API key<input id="sarvamKey" type="password" autocomplete="off" placeholder="Enter your Sarvam API key"></label><label>Spoken language<select id="language"><option value="en-IN">English</option><option value="hi-IN">Hindi</option><option value="ta-IN">Tamil</option><option value="te-IN">Telugu</option><option value="kn-IN">Kannada</option><option value="ml-IN">Malayalam</option><option value="mr-IN">Marathi</option><option value="bn-IN">Bengali</option><option value="gu-IN">Gujarati</option><option value="pa-IN">Punjabi</option></select></label><label>Language model<select id="provider"><option value="livekit">Hosted Gemma 4 · LiveKit</option><option value="ollama">Local model · Ollama</option></select></label></div></div>
+        <div class="settings-section" id="livekitSettings"><h3>LiveKit credentials</h3><div class="form-grid"><label class="wide">Project URL<input id="livekitUrl" placeholder="wss://your-project.livekit.cloud" autocomplete="off"></label><label>API key<input id="livekitKey" type="password" autocomplete="off"></label><label>API secret<input id="livekitSecret" type="password" autocomplete="off"></label></div></div>
+        <div class="settings-section" id="ollamaSettings" hidden><h3>Local model</h3><div class="form-grid"><label>Model name<input id="ollamaModel" placeholder="gemma4:e2b"></label><label>Server URL<input id="ollamaUrl" placeholder="http://localhost:11434/v1"></label></div><p class="help">Install Ollama and pull the model first. Sarvam speech still uses the internet.</p></div>
+        <div class="settings-section"><label class="checkbox"><input type="checkbox" id="interruptions"><span>Allow me to interrupt the assistant</span></label><p class="help">Use headphones for interruptions. With this off, microphone audio pauses during replies to prevent speaker feedback.</p></div>
+        <div class="settings-actions"><span id="encryptionState">Windows encrypted storage</span><button class="primary" type="submit">Save settings</button></div>
+      </form>
+    </section>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>
